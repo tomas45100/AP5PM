@@ -1,8 +1,0 @@
-node_modules
-www
-dist
-coverage
-.angular
-android
-ios
-package-lock.json

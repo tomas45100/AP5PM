@@ -35,7 +35,7 @@ describe('Tab1Page', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add the newest saved counter to the beginning', () => {
+  it('should add the newest saved counter to the beginning', async () => {
     const first: SavedCounter = {
       id: 'first',
       name: 'První',
@@ -49,8 +49,8 @@ describe('Tab1Page', () => {
       createdAt: '2026-09-17T09:00:00.000Z',
     };
 
-    component.onSaved(first);
-    component.onSaved(second);
+    await component.onSaved(first);
+    await component.onSaved(second);
 
     expect(counterService.counters()).toEqual([second, first]);
   });

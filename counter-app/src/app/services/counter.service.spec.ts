@@ -115,7 +115,7 @@ describe('CounterService', () => {
     await service.initialize();
     expect(service.counters()).toEqual([]);
     expect(service.initialized()).toBe(true);
-    expect(errorSpy).toHaveBeenCalledWith('Failed to load the history of counters.');
+    expect(errorSpy).toHaveBeenCalledWith('Historii počítadel se nepodařilo načíst.', expect.any(Error));
     errorSpy.mockRestore();
   });
 
@@ -127,7 +127,7 @@ describe('CounterService', () => {
     await service.initialize();
     expect(service.counters()).toEqual([]);
     expect(service.initialized()).toBe(true);
-    expect(errorSpy).toHaveBeenCalledWith('Failed to load the history of counters.', expect.any(Error));
+    expect(errorSpy).toHaveBeenCalledWith('Historii počítadel se nepodařilo načíst.', expect.any(Error));
     errorSpy.mockRestore();
   });
 });

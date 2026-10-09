@@ -38,6 +38,7 @@
     </div>
 
     <ion-button
+      id="save-counter"
       class="save-button"
       expand="block"
       color="success"
@@ -46,5 +47,8 @@
     >
       Uložit počítadlo
     </ion-button>
+    <ion-toast trigger="save-counter" message="Počítadlo úspěšně uloženo!" [duration]="2000">
+
+    </ion-toast>
   </ion-card-content>
 </ion-card>

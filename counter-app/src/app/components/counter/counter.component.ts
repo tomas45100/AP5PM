@@ -7,6 +7,7 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonInput,
+  IonToast,
 } from '@ionic/angular';
 import { SavedCounter } from '../../models/saved-counter';
 
@@ -22,6 +23,7 @@ import { SavedCounter } from '../../models/saved-counter';
     IonCardHeader,
     IonCardTitle,
     IonInput,
+    IonToast,
   ],
 })
 export class CounterComponent {

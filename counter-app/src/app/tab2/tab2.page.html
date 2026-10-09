@@ -15,9 +15,18 @@
   } @else {
     <div class="history-header">
       <p>Počet záznamů: {{ counterService.counters().length }}</p>
-      <ion-button color="danger" fill="outline" size="small" (click)="clear()">
+      <p>Počet kladných hodnot: {{ counterService.positiveCount() }}</p>
+      <p>Počet záporných hodnot: {{ counterService.negativeCount() }}</p>
+      <p>Počet nulových hodnot: {{ counterService.zeroCount() }}</p>
+      <ion-button id="delete-all-alert" color="danger" fill="outline" size="small" (click)="clear()">
         Vymazat vše
       </ion-button>
+      <ion-alert trigger="delete-all-alert" header="Smazat vše" message="Opravdu chcete smazat vše?" [buttons]="alertButtons"></ion-alert>
+    </div>
+
+    <div class="history-header">
+      <ion-input itype="text" placeholder="Vyhledat počítadlo..." [(ngModel)]="searchName"></ion-input>
+      <ion-button color="success">Vyhledat</ion-button>
     </div>
 
     <ion-list>
@@ -31,6 +40,7 @@
           <ion-note slot="end">{{ counter.value }}</ion-note>
 
           <ion-button
+            id="delete-counter"
             slot="end"
             color="danger"
             fill="clear"
@@ -39,8 +49,12 @@
           >
             Odstranit
           </ion-button>
+          <ion-toast trigger="delete-counter" message="Počítadlo úspěšně smazáno!" [duration]="2000"></ion-toast>
         </ion-item>
       }
     </ion-list>
+    <div class="history-header">
+      <p>Součet všech hodnot počítadel: {{ counterService.totalCount() }}</p>
+    </div>
   }
 </ion-content>

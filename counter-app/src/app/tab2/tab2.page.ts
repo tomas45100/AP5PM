@@ -14,6 +14,8 @@ import {
   IonToast,
   IonToolbar,
   IonInput,
+  IonSelect, 
+  IonSelectOption
 } from '@ionic/angular';
 import { CounterService } from '../services/counter.service';
 import { FormsModule } from '@angular/forms';
@@ -37,6 +39,8 @@ import { FormsModule } from '@angular/forms';
     IonToast,
     IonToolbar,
     IonInput,
+    IonSelect,
+    IonSelectOption,
     FormsModule,
   ],
 })
@@ -59,5 +63,22 @@ export class Tab2Page implements OnInit {
 
   async clear(): Promise<void> {
     await this.counterService.clear();
+  }
+
+  async sort(event: CustomEvent): Promise<void>{
+    switch(event.detail.value){
+      case "name_asc":
+        await this.counterService.sortNameAsc();
+        break;
+      case "name_desc":
+        await this.counterService.sortNameDesc();
+        break;
+      case "value_asc":
+        await this.counterService.sortValueAsc();
+        break;
+      case "value_desc":
+        await this.counterService.sortValueDesc();
+        break;
+    };
   }
 }

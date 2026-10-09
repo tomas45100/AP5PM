@@ -26,7 +26,15 @@
 
     <div class="history-header">
       <ion-input itype="text" placeholder="Vyhledat počítadlo..." [(ngModel)]="searchName"></ion-input>
-      <ion-button color="success">Vyhledat</ion-button>
+      <ion-button color="success" (click)="search()">Vyhledat</ion-button>
+    </div>
+    <div class="history-header">
+      <ion-select label="Seřadit podle" placeholder="Seřadit podle" (ionChange)="sort($event)">
+        <ion-select-option value="name_asc">Jména: Vzestupně</ion-select-option>
+        <ion-select-option value="name_desc">Jména: Sestupně</ion-select-option>
+        <ion-select-option value="value_asc">Hodnoty: Vzestupně</ion-select-option>
+        <ion-select-option value="value_desc">Hodnoty: Sestupně</ion-select-option>
+      </ion-select>
     </div>
 
     <ion-list>

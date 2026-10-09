@@ -40,10 +40,9 @@ export class CounterService {
   async search(searchName: string): Promise<void> {
     await this.initialize();
         if(searchName === ''){
-            return;
+            await this.load();
         }
         this.countersState.update((counters) => counters.filter((counter) => counter.name.includes(searchName)));
-        this.persist();
   }
 
   async clear(): Promise<void> {
@@ -51,6 +50,27 @@ export class CounterService {
     this.countersState.set([]);
     await Preferences.remove({ key: this.storageKey });
   }
+
+  async sortNameAsc(): Promise<void>{
+    await this.initialize();
+    this.countersState.update((counters) => counters.sort((first, second) => first.name.localeCompare(second.name)));
+  }
+
+  async sortNameDesc(): Promise<void>{
+    await this.initialize();
+    this.countersState.update((counters) => counters.sort((first, second) => second.name.localeCompare(first.name)));
+  }
+
+  async sortValueAsc(): Promise<void>{
+    await this.initialize();
+    this.countersState.update((counters) => counters.sort((first, second) => first.value - second.value));
+  }
+
+  async sortValueDesc(): Promise<void>{
+    await this.initialize();
+    this.countersState.update((counters) => counters.sort((first, second) => second.value - first.value));
+  }
+
 
   private async load(): Promise<void> {
     try {

@@ -93,7 +93,7 @@ export class Tab3Page {
 
     try {
       // Načteme i příští rok, aby byl co vybírat také na konci prosince.
-      const holidays = await this.holidayApi.getHolidays('2026-02-02', '2026-02-02');
+      const holidays = await this.holidayApi.getHolidays(today, `${nextYear}-12-31`);
       // filter ponechá dnešní a budoucí svátky; datum porovnáváme jako řetězec.
       const upcoming = holidays.filter((holiday) => holiday.startDate >= today);
       this.holidays.set(upcoming);

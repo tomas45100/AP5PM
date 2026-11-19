@@ -17,9 +17,9 @@ import {
   IonSelect, 
   IonSelectOption
 } from '@ionic/angular';
-import { CounterService } from '../services/counter.service';
 import { FormsModule } from '@angular/forms';
 import { FirebaseAuthService } from '../services/firebase-auth.service';
+import { FirebaseCounterService } from '../services/firebase-counter.service';
 
 @Component({
   selector: 'app-tab2',
@@ -46,21 +46,12 @@ import { FirebaseAuthService } from '../services/firebase-auth.service';
   ],
 })
 export class Tab2Page implements OnInit {
-  readonly counterService = inject(CounterService);
+  readonly counterService = inject(FirebaseCounterService);
   searchName = '';
   public alertButtons = [{text: 'Zrušit', role: 'cancel', handler: () => {},}, {text: 'Potvrdit', role: 'confirm', handler: () => this.clear()}];
-  readonly auth = inject(FirebaseAuthService);
-  readonly authError = signal('');
 
   async ngOnInit(): Promise<void> {
     await this.counterService.initialize();
-
-    try {
-      await this.auth.initialize();
-    } catch (error) {
-      console.error(error);
-      this.authError.set('Přihlášení se nezdařilo. Zkontrolujte konfiguraci.');
-    }
   }
 
   async remove(id: string): Promise<void> {
@@ -68,15 +59,15 @@ export class Tab2Page implements OnInit {
   }
 
   async search(): Promise<void>{
-    await this.counterService.search(this.searchName);
+    //await this.counterService.search(this.searchName);
   }
 
   async clear(): Promise<void> {
-    await this.counterService.clear();
+    //await this.counterService.clear();
   }
 
   async sort(event: CustomEvent): Promise<void>{
-    switch(event.detail.value){
+    /*switch(event.detail.value){
       case "name_asc":
         await this.counterService.sortNameAsc();
         break;
@@ -89,6 +80,6 @@ export class Tab2Page implements OnInit {
       case "value_desc":
         await this.counterService.sortValueDesc();
         break;
-    };
+    };*/
   }
 }
